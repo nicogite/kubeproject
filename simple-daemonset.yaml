@@ -1,0 +1,22 @@
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nginx-demo-daemonset
+  labels:
+    version: v1
+    app: nginx-demo-daemonset
+spec:
+  selector:
+    matchLabels:
+      app: nginx-demo-daemonset
+  template:
+    metadata:
+      labels:
+        app: nginx-demo-daemonset
+        version: v1
+    spec:
+      containers:
+      - name: nginx-demo-daemonset
+        image: objectiflibre/nginx-demo:red
+        

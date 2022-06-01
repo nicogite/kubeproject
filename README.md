@@ -33,10 +33,18 @@ kubectl config -h
 ```
 kubectl config set-cluster cluster-formation --embed-certs --server=https://$(minikube ip):8443 --certificate-authority=$HOME/.minikube/ca.crt
 
-kubectl config set-credentials nico --client-certificate=$HOME/.minikube/proxy-client-ca.crt --client-key=$HOME/.minikube/proxy-client-ca.key
+kubectl config set-credentials nico --client-certificate=$HOME/.minikube/ca.crt --client-key=$HOME/.minikube/ca.key
 
 kubectl config set-context formation --user=nico --cluster=cluster-formation
 ```
 
 ## Création d'un pod
 
+```
+kubectl run nginx --image=nginx:latest --port=8000 --labels="env=dev"
+```
+
+Si il y a un pb avec le port 8080, relancer minikube avec :
+```
+minikube start
+```
