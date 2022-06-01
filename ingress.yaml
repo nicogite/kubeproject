@@ -4,9 +4,11 @@ metadata:
   name: test-ingress
 spec:
   rules:
-  - http:
+  - host: demo-formation.192.168.49.2.nip.io
+    http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
           service:
             name: nginx-demo-daemonset

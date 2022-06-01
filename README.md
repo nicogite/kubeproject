@@ -48,3 +48,39 @@ Si il y a un pb avec le port 8080, relancer minikube avec :
 ```
 minikube start
 ```
+
+## Deployment
+
+- Génère des replicaSets
+
+## ReplicaSets
+
+- Créé des Pods et maintient leur nombre
+- Se base sur un template de pod pour créer les nouveaux pods
+
+## DaemonSets
+
+- Lance un pod sur chaque node
+- Est généralement utilisé pour lancer un daemon (application système) sur chaque node
+
+## Services
+
+- Permet d'exposer les pods à l'extérieur (par exemple via une redirection de port)
+
+
+## Ingress
+
+- Définit des routes pour accéder aux services, et donc aux pods
+
+
+
+
+
+
+
+
+
+
+
+
+
