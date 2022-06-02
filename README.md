@@ -19,9 +19,25 @@ apt install bash-completion
 echo "source <(kubectl completion bash)" >> ~/.bashrc
 ```
 
-## Lancement du dashboard Minikube
+## Minikube
 
+Minikube permet d'utiliser Kubernetes en local. Il faut le démarrer pour pouvoir ensuite lancer des commandes kubectl.
+Toutes ces commandes s'exécuteront dans le contexte "minikube"
+
+### Lancement de minikube
+
+```
+minikube start
+```
+
+### Lancement du dashboard Minikube
+
+```
 minikube dashboard
+```
+
+Le dashboard permet de suivre les entités créées au sein du contexte minikube
+
 
 ## Help
 
@@ -44,10 +60,7 @@ kubectl config set-context formation --user=nico --cluster=cluster-formation
 kubectl run nginx --image=nginx:latest --port=8000 --labels="env=dev"
 ```
 
-Si il y a un pb avec le port 8080, relancer minikube avec :
-```
-minikube start
-```
+En général, on créé les pods grâce à des "déploiements", ce qui permet de relancer automatiquement les pods qui s'éteignent.
 
 ## Deployment
 
@@ -66,11 +79,28 @@ minikube start
 ## Services
 
 - Permet d'exposer les pods à l'extérieur (par exemple via une redirection de port)
+- Permet aux pods de cummuniquer entre eux
 
 
 ## Ingress
 
 - Définit des routes pour accéder aux services, et donc aux pods
+
+## Jobs
+
+- Permet de lancer une commande dans un pod dédié à cette tâche
+- Le pod sera détruit une fois la tâche effectuée
+
+## CronJobs
+
+- Lance un job de façon cyclique
+
+
+
+
+
+
+
 
 
 
