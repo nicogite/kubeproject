@@ -4,7 +4,7 @@ metadata:
   name: test-ingress
 spec:
   rules:
-  - host: demo-formation.test.com
+  - host: demo-formation.192.168.49.2.nip.io
     http:
       paths:
       - path: /

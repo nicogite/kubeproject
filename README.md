@@ -81,10 +81,24 @@ En général, on créé les pods grâce à des "déploiements", ce qui permet de
 - Permet d'exposer les pods à l'extérieur (par exemple via une redirection de port)
 - Permet aux pods de cummuniquer entre eux
 
+On vérifie les services actifs avec :
+```
+kubectl get services
+```
+
+On peut obtenir l'url d'un service avec :
+```
+minikube service <service-name> --url
+```
+
 
 ## Ingress
 
 - Définit des routes pour accéder aux services, et donc aux pods
+- NOTE : Il faut activer le module dans minikube pour pouvoir l'utiliser :
+```
+minikube addons enable ingress
+```
 
 ## Jobs
 
@@ -94,6 +108,65 @@ En général, on créé les pods grâce à des "déploiements", ce qui permet de
 ## CronJobs
 
 - Lance un job de façon cyclique
+
+## Détruire un Objet
+
+```
+kubectl delete -f <filename>
+```
+
+## Récupérer des informations sur un pod
+
+```
+kubectl describe pod <nom_du_pod>
+```
+
+## Health Check
+
+On peut vérifier régulièrement l'état d'un pod en ajoutant liveness et/ou readyness à ses spec
+- liveness exécute un test périodiquement pendant la durée de vie du pod. Si le test échoue, le pod est redémarrer
+- readiness exécute un test périodiquement au lancement du pod. Permet d'indiquer que le pod est prêt.
+
+## Persistent Volumes
+
+- Permet la persistence des données
+- Partage les données entre les pods
+- Ils sont "préparés" en amont par les admins
+- Ils sont "demandés" à l'instanciation par les développers
+- On peut avoir des volumes en local, mais surtout dans le Cloud (AWS, Azure, GCP...)
+
+## Volume - Empty dir
+
+- Volume créé lorsqu'un pod est assigné à un noeud
+- Tous les conteneurs de ce pods peuvent lire et écrire dedans.
+- Ses données sont supprimées lorsque le Pod est supprimé
+
+On vérifie que les volumes ont bien été demandés avec :
+```
+kubectl get pvc
+```
+
+## Stratégies de déploiement
+
+
+La stratégie de déploiement est définie... dans les specs du déploiement
+
+- RollingUpdate : Met à jour petit à petit les replicas du set
+- Recreate : Remplace tout les replicas par les nouveaux (utile si on ne veut pas que les users aient une expérience dégradée pendant le déploiement, ou si les replicas ne peuvent que fonctionner tous ensemble)
+- Canary : Ne déploie les nouveaux replicas que sur une petite partie du set (1/4 en général). Utile pour faire des tests sur une partie des users.
+
+## Passer la certification
+
+### Livre fondamental sur Kubernetes :
+https://github.com/kelseyhightower/kubernetes-the-hard-way
+
+### Tips pour passer l’examen :
+https://www.componentsoft.io/blog/the-kubernetes-cka-exam-11-tips-for-better-chances/
+
+### Exercices certifications :
+- https://github.com/stretchcloud/cka-lab-practice
+- https://github.com/dgkanatsios/CKAD-exercises
+- https://github.com/alijahnas/CKA-practice-exercises
 
 
 
